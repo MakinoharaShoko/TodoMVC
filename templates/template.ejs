@@ -1,0 +1,23 @@
+<div class="mainContainer">
+    <div class="title">
+        TodoMVC
+    </div>
+    <div class="formArea">
+        <form action="/addNew" method="post">
+            <div class="addTitle">
+                添加新事项
+            </div>
+            <div>
+                <input class="input" name="name" type="text" id="name">
+            </div>
+            <div class="buttonArea">
+                <button class="button" type="submit">添加</button>
+            </div>
+        </form>
+    </div>
+    <div class="todosContainer">
+        <% todos.forEach(function(item){ %>
+            <div class="item"><%= item %></div>
+        <% }) %>
+    </div>
+</div>
