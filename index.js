@@ -6,8 +6,9 @@ const Port = process.env.PORT || 3000;
 const app = express();
 
 const TodoDatas = [
-    '做一些初级的事情',
-    '做一些中级的事情'
+    {text:'做一些初级的事情',type:'active'},
+    {text:'做一些中级的事情',type:'active'},
+    {text:'做一些高级的事情',type:'done'},
 ];
 
 app.use('/assets', express.static(process.cwd()+ '/assets'));//allow browser access resources
@@ -18,6 +19,12 @@ app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
     HTMLrender('ALL', TodoDatas).then(r=>res.send(r));
+})
+app.get('/active', (req, res) => {
+    HTMLrender('active', TodoDatas).then(r=>res.send(r));
+})
+app.get('/done', (req, res) => {
+    HTMLrender('done', TodoDatas).then(r=>res.send(r));
 })
 
 app.get('/status', (req, res) => {
