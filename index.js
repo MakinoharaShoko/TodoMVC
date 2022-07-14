@@ -88,10 +88,11 @@ function mapReferToUrl(refer) {
 }
 
 function mapIdtoIndex(id) {
+    let returnid = -1;
     TodoDatas.forEach(((e, i) => {
-        if (e.id === deleteId) {
-            return i;
+        if (e.id === id) {
+            returnid = i;
         }
     }))
-    return -1;
+    return returnid;
 }

@@ -35,12 +35,12 @@
         if (type === 'done') {
             todos = todos.filter(e => e.type === 'done');
         }
-        todos.forEach(function(item, index){ %>
+        todos.forEach(function(item){ %>
             <div class="itemContainer">
                 <div class="item">
                     <% if(item.type === 'active'){ %>
                         <form action="/setDone" method="post">
-                            <input style="display: none" name="id" value="<%= index %>">
+                            <input style="display: none" name="id" value="<%= item.id %>">
                             <input style="display: none" name="refer" value="<%= type %>">
                             <button class="smallButton" type="submit">
                                 标为已完成
@@ -50,7 +50,7 @@
                     <% } %>
                     <% if(item.type === 'done'){ %>
                         <form action="/setActive" method="post">
-                            <input style="display: none" name="id" value="<%= index %>">
+                            <input style="display: none" name="id" value="<%= item.id %>">
                             <input style="display: none" name="refer" value="<%= type %>">
                             <button class="smallButton" type="submit">
                                 标为未完成
