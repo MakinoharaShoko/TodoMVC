@@ -23,13 +23,17 @@
     width: 100%;
     font-size: x-large;
     text-align: left;
-    padding: 15px 25px 15px 25px;
+    padding: 15px 15px 15px 15px;
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     margin: 0 0 12px 0;
+    display: flex;
+    align-items: center;
+    flex-flow: row;
+    justify-content: flex-start;
 }
 
-.item:last-child{
+.item:last-child {
     margin: 0;
 }
 
@@ -41,18 +45,18 @@
     margin: 10px 0 0 0;
 }
 
-.formArea{
+.formArea {
     width: 100%;
 }
 
-.addTitle{
+.addTitle {
     font-size: x-large;
     width: 100%;
     text-align: center;
     padding: 0 0 10px 0;
 }
 
-.buttonArea{
+.buttonArea {
     text-align: center;
     padding: 10px 0 5px 0;
     width: 100%;
@@ -61,7 +65,7 @@
     align-items: center;
 }
 
-.button{
+.button {
     padding: 10px 35px 10px 35px;
     font-size: large;
     background: #005caf;
@@ -71,11 +75,61 @@
     cursor: pointer;
 }
 
-.input{
+.input {
     outline: none;
-    border: 1px solid rgba(0,0,0,0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     font-size: x-large;
     padding: 15px 25px 15px 25px;
     width: 100%;
     border-radius: 5px;
+}
+
+.smallButton {
+    padding: 3px 7px 3px 7px;
+    font-size: smaller;
+    border: none;
+    color: #005caf;
+    border-radius: 5px;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.1);
+    margin: 0 5px 0 0;
+}
+
+
+
+.itemContainer {
+    width: 100%;
+}
+
+.optionList {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: all 0.33s;
+    width: 100%;
+}
+
+
+.itemContainer:hover .optionList {
+    opacity: 1;
+    display: flex;
+    height: 2em;
+}
+
+.smallButton:hover + .itemText {
+    text-decoration: line-through;
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.itemText {
+}
+
+.itemTextDone {
+    text-decoration: line-through;
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.smallButton:hover + .itemTextDone {
+    text-decoration: none;
+    color: black;
 }

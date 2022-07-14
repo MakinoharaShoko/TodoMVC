@@ -23,8 +23,35 @@
         if (type === 'done') {
             todos = todos.filter(e => e.type === 'done');
         }
-        todos.forEach(function(item){ %>
-            <div class="item"><%= item.text %></div>
+        todos.forEach(function(item, index){ %>
+        <div class="itemContainer">
+            <div class="item">
+                <% if(item.type === 'active'){ %>
+                    <form action="/setDone" method="post">
+                        <input style="display: none" name="id" value="<%= index %>">
+                        <button class="smallButton" type="submit">
+                            标为完成
+                        </button>
+                        <span class="itemText"><%= item.text %></span>
+                    </form>
+                <% } %>
+                    <% if(item.type === 'done'){ %>
+                        <form action="/setActive" method="post">
+                            <input style="display: none" name="id" value="<%= index %>">
+                            <button class="smallButton" type="submit">
+                                标为未完成
+                            </button>
+                            <span class="itemTextDone"><%= item.text %></span>
+                        </form>
+                    <% } %>
+            </div>
+<!--            <div class="optionList">-->
+<!--                <form action="/deleteOne" method="post">-->
+<!--                    <input style="display: none" name="id" value="<%= index %>">-->
+<!--                    <button class="button" type="submit">删除此项</button>-->
+<!--                </form>-->
+<!--            </div>-->
+        </div>
         <% }) %>
     </div>
 </div>
