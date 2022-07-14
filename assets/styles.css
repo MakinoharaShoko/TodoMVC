@@ -66,7 +66,7 @@
 }
 
 .button {
-    padding: 10px 35px 10px 35px;
+    padding: 6px 23px 6px 23px;
     font-size: large;
     background: #005caf;
     border: none;
@@ -95,13 +95,15 @@
     overflow: hidden;
     transition: all 0.33s;
     width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 
 .itemContainer:hover .optionList {
     opacity: 1;
     display: flex;
-    height: 2em;
+    height: 2.5em;
 }
 
 .smallButton {
@@ -152,4 +154,20 @@
 .filterList {
     display: flex;
     padding: 0 0 10px 0;
+}
+
+.deleteButton{
+    padding: 3px 10px 3px 10px;
+    border: none;
+    font-size: larger;
+    color: #CB1B45;
+    border-radius: 5px;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.1);
+    margin: 0 5px 0 0;
+}
+
+.deleteButton:hover{
+    background: #CB1B45;
+    color: white;
 }

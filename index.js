@@ -6,9 +6,9 @@ const Port = process.env.PORT || 3000;
 const app = express();
 
 const TodoDatas = [
-    {text: '做一些初级的事情', type: 'active'},
-    {text: '做一些中级的事情', type: 'active'},
-    {text: '做一些高级的事情', type: 'done'},
+    {text: '做一些初级的事情', type: 'active', id: '1'},
+    {text: '做一些中级的事情', type: 'active', id: '2'},
+    {text: '做一些高级的事情', type: 'done', id: '3'},
 ];
 
 app.use('/assets', express.static(process.cwd() + '/assets'));//allow browser access resources
@@ -33,15 +33,23 @@ app.get('/status', (req, res) => {
 
 app.post('/addNew', (req, res) => {
     const AddName = req.body.name;
-    TodoDatas.push({text: AddName, type: 'active'});
+    const id = Math.random().toString(16);
+    TodoDatas.push({text: AddName, type: 'active', id});
     const refer = req.body.refer;
     const url = mapReferToUrl(refer);
     res.redirect(url);
 })
 
 app.post('/deleteOne', (req, res) => {
-    const deleteId = parseInt(req.body.id);
-    TodoDatas.splice(deleteId, 1);
+    const deleteId = req.body.id;
+    let index = -1;
+    TodoDatas.forEach(((e, i) => {
+        if (e.id === deleteId) {
+            index = i;
+        }
+    }))
+    if (index !== -1)
+        TodoDatas.splice(index, 1);
     const refer = req.body.refer;
     const url = mapReferToUrl(refer);
     res.redirect(url);

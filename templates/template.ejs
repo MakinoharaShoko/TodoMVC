@@ -4,13 +4,13 @@
     </div>
     <div class="filterList">
         <form action="/" method="get">
-            <button class="<%=type === 'ALL'?'buttonActive':'smallButton'%>" type="submit">显示全部</button>
+            <button class="<%= type === 'ALL'?'buttonActive':'smallButton' %>" type="submit">显示全部</button>
         </form>
         <form action="/done" method="get">
-            <button class="<%=type === 'done'?'buttonActive':'smallButton'%>" type="submit">显示已完成</button>
+            <button class="<%= type === 'done'?'buttonActive':'smallButton' %>" type="submit">显示已完成</button>
         </form>
         <form action="/active" method="get">
-            <button class="<%=type === 'active'?'buttonActive':'smallButton'%>" type="submit">显示未完成</button>
+            <button class="<%= type === 'active'?'buttonActive':'smallButton' %>" type="submit">显示未完成</button>
         </form>
     </div>
     <div class="formArea">
@@ -59,12 +59,13 @@
                         </form>
                     <% } %>
                 </div>
-                <!--            <div class="optionList">-->
-                <!--                <form action="/deleteOne" method="post">-->
-                <!--                    <input style="display: none" name="id" value="<%= index %>">-->
-                <!--                    <button class="button" type="submit">删除此项</button>-->
-                <!--                </form>-->
-                <!--            </div>-->
+                <div class="optionList">
+                    <form action="/deleteOne" method="post">
+                        <input style="display: none" name="refer" value="<%= type %>">
+                        <input style="display: none" name="id" value="<%= item.id %>">
+                        <button class="deleteButton" type="submit">删除此项</button>
+                    </form>
+                </div>
             </div>
         <% }) %>
     </div>
