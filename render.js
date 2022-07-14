@@ -8,7 +8,7 @@ import * as fs from 'fs/promises'
  * @returns {Promise<*>}
  * @constructor
  */
-export default async function HTMLrender(type,todos){
+export default async function HtmlRender(type, todos){
     const templateFile = await fs.readFile(`${process.cwd()}/templates/template.ejs`);
     const template = templateFile.toString();
     const props = {type,todos};

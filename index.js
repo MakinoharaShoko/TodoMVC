@@ -1,6 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import HTMLrender from "./render.js";
+import HtmlRender from "./render.js";
 
 const Port = process.env.PORT || 3000;
 const app = express();
@@ -18,13 +18,13 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
-    HTMLrender('ALL', TodoDatas).then(r => res.send(r));
+    HtmlRender('ALL', TodoDatas).then(r => res.send(r));
 })
 app.get('/active', (req, res) => {
-    HTMLrender('active', TodoDatas).then(r => res.send(r));
+    HtmlRender('active', TodoDatas).then(r => res.send(r));
 })
 app.get('/done', (req, res) => {
-    HTMLrender('done', TodoDatas).then(r => res.send(r));
+    HtmlRender('done', TodoDatas).then(r => res.send(r));
 })
 
 app.get('/status', (req, res) => {
