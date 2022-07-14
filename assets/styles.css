@@ -84,18 +84,6 @@
     border-radius: 5px;
 }
 
-.smallButton {
-    padding: 3px 7px 3px 7px;
-    font-size: smaller;
-    border: none;
-    color: #005caf;
-    border-radius: 5px;
-    cursor: pointer;
-    background: rgba(0, 0, 0, 0.1);
-    margin: 0 5px 0 0;
-}
-
-
 
 .itemContainer {
     width: 100%;
@@ -116,9 +104,36 @@
     height: 2em;
 }
 
+.smallButton {
+    padding: 3px 7px 3px 7px;
+    font-size: smaller;
+    border: none;
+    color: #005caf;
+    border-radius: 5px;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.1);
+    margin: 0 5px 0 0;
+}
+
 .smallButton:hover + .itemText {
     text-decoration: line-through;
     color: rgba(0, 0, 0, 0.3);
+}
+
+.buttonActive {
+    padding: 3px 7px 3px 7px;
+    font-size: smaller;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.1);
+    margin: 0 5px 0 0;
+    background: #005caf;
+    color: white;
+}
+
+.smallButton:hover {
+    background: rgba(0, 92, 175, 0.2);
 }
 
 .itemText {
@@ -132,4 +147,9 @@
 .smallButton:hover + .itemTextDone {
     text-decoration: none;
     color: black;
+}
+
+.filterList {
+    display: flex;
+    padding: 0 0 10px 0;
 }

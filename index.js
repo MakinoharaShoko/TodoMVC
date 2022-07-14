@@ -32,28 +32,47 @@ app.get('/status', (req, res) => {
 })
 
 app.post('/addNew', (req, res) => {
-    console.log(req)
     const AddName = req.body.name;
     TodoDatas.push({text: AddName, type: 'active'});
-    res.redirect('/');
+    const refer = req.body.refer;
+    const url = mapReferToUrl(refer);
+    res.redirect(url);
 })
 
 app.post('/deleteOne', (req, res) => {
-    const deleteId = parseInt( req.body.id);
-    TodoDatas.splice(deleteId,1);
-    res.redirect('/');
+    const deleteId = parseInt(req.body.id);
+    TodoDatas.splice(deleteId, 1);
+    const refer = req.body.refer;
+    const url = mapReferToUrl(refer);
+    res.redirect(url);
 })
 
-app.post('/setDone',(req,res)=>{
+app.post('/setDone', (req, res) => {
     const setId = parseInt(req.body.id);
-    TodoDatas[setId].type='done';
-    res.redirect('/');
+    TodoDatas[setId].type = 'done';
+    const refer = req.body.refer;
+    const url = mapReferToUrl(refer);
+    res.redirect(url);
 })
 
-app.post('/setActive',(req,res)=>{
+app.post('/setActive', (req, res) => {
     const setId = parseInt(req.body.id);
-    TodoDatas[setId].type='active';
-    res.redirect('/');
+    TodoDatas[setId].type = 'active';
+    const refer = req.body.refer;
+    const url = mapReferToUrl(refer);
+    res.redirect(url);
 })
 
 app.listen(Port, () => console.log('Express server running at ' + Port));
+
+function mapReferToUrl(refer) {
+    if (refer === 'ALL') {
+        return '/'
+    }
+    if (refer === 'done') {
+        return '/done'
+    }
+    if (refer === 'active') {
+        return '/active'
+    }
+}
