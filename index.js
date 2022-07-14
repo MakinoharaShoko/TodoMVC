@@ -45,12 +45,7 @@ app.post('/addNew', (req, res) => {
 
 app.post('/deleteOne', (req, res) => {
     const deleteId = req.body.id;
-    let index = -1;
-    TodoDatas.forEach(((e, i) => {
-        if (e.id === deleteId) {
-            index = i;
-        }
-    }))
+    let index = mapIdtoIndex(deleteId);
     if (index !== -1)
         TodoDatas.splice(index, 1);
     const refer = req.body.refer;
@@ -59,16 +54,20 @@ app.post('/deleteOne', (req, res) => {
 })
 
 app.post('/setDone', (req, res) => {
-    const setId = parseInt(req.body.id);
-    TodoDatas[setId].type = 'done';
+    const setId = req.body.id;
+    const index = mapIdtoIndex(setId);
+    if (index !== -1)
+        TodoDatas[index].type = 'done';
     const refer = req.body.refer;
     const url = mapReferToUrl(refer);
     res.redirect(url);
 })
 
 app.post('/setActive', (req, res) => {
-    const setId = parseInt(req.body.id);
-    TodoDatas[setId].type = 'active';
+    const setId = req.body.id;
+    const index = mapIdtoIndex(setId);
+    if (index !== -1)
+        TodoDatas[index].type = 'active';
     const refer = req.body.refer;
     const url = mapReferToUrl(refer);
     res.redirect(url);
@@ -86,4 +85,13 @@ function mapReferToUrl(refer) {
     if (refer === 'active') {
         return '/active'
     }
+}
+
+function mapIdtoIndex(id) {
+    TodoDatas.forEach(((e, i) => {
+        if (e.id === deleteId) {
+            return i;
+        }
+    }))
+    return -1;
 }
