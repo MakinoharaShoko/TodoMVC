@@ -5,7 +5,7 @@ import * as fs from 'fs/promises'
  * 渲染为 HTML
  * @param type 渲染类型（所有还是已做完还是未做）
  * @param todos （一个ToDo 列表）
- * @returns {Promise<*>}
+ * @returns {Promise<string>}
  * @constructor
  */
 export default async function HtmlRender(type, todos){

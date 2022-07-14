@@ -5,13 +5,15 @@ import HtmlRender from "./render.js";
 const Port = process.env.PORT || 3000;
 const app = express();
 
+// 应用数据
 const TodoDatas = [
     {text: '做一些初级的事情', type: 'active', id: '1'},
     {text: '做一些中级的事情', type: 'active', id: '2'},
     {text: '做一些高级的事情', type: 'done', id: '3'},
 ];
 
-app.use('/assets', express.static(process.cwd() + '/assets'));//allow browser access resources
+//allow browser access resources
+app.use('/assets', express.static(process.cwd() + '/assets'));
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: false}))
 // parse application/json
@@ -34,7 +36,8 @@ app.get('/status', (req, res) => {
 app.post('/addNew', (req, res) => {
     const AddName = req.body.name;
     const id = Math.random().toString(16);
-    TodoDatas.push({text: AddName, type: 'active', id});
+    if (AddName !== '')
+        TodoDatas.push({text: AddName, type: 'active', id});
     const refer = req.body.refer;
     const url = mapReferToUrl(refer);
     res.redirect(url);
