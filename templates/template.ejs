@@ -54,8 +54,8 @@
                             <button class="smallButton" type="submit">
                                 标为已完成
                             </button>
-                            <span class="itemText"><%= item.text %></span>
                         </form>
+                        <span id="<%= item.id %>" class="itemText"><%= item.text %></span>
                     <% } %>
                     <% if(item.type === 'done'){ %>
                         <form action="/setActive" method="post">
@@ -64,8 +64,8 @@
                             <button class="smallButton" type="submit">
                                 标为未完成
                             </button>
-                            <span class="itemTextDone"><%= item.text %></span>
                         </form>
+                        <span id="<%= item.id %>" class="itemTextDone"><%= item.text %></span>
                     <% } %>
                 </div>
                 <div class="optionList">
@@ -81,7 +81,7 @@
     <div class="headControlContainer">
         <form action="/eraseAllDone" method="post">
             <input style="display: none" name="refer" value="<%= type %>">
-            <button class="smallButton" type="submit">清除所有已完成项目</button>
+            <button class="smallButton" type="submit">清除所有已完成的项目</button>
         </form>
         <form action="/setAllDone" method="post">
             <input style="display: none" name="refer" value="<%= type %>">
@@ -93,3 +93,38 @@
         </form>
     </div>
 </div>
+<script>
+    // 绑定事件，动态创建一个输入框，在 onBlur 事件触发时发送请求，编辑所属项目。
+    let textList = document.querySelectorAll('.itemTextDone');
+    textList = [...textList, ...document.querySelectorAll('.itemText')];
+    // 为这些绑定事件
+    for (const element of textList) {
+        element.addEventListener('dblclick', () => {
+            // 取得 Id
+            const editId = element.id;
+            // 构造输入框
+            const inputElement = document.createElement('input');
+            const text = element.innerText;
+            const parentNode = element.parentElement;
+            inputElement.defaultValue = text;
+            inputElement.className = 'editInput';
+            inputElement.addEventListener('blur', (event) => editTodo(event, editId));
+            inputElement.addEventListener('change', (event) => editTodo(event, editId));
+            parentNode.removeChild(element);
+            parentNode.appendChild(inputElement);
+            inputElement.focus();
+        })
+    }
+
+    function editTodo(event, id) {
+        const newText = event.target.value;
+        const body = `id=${id}&refer=<%= type %>&text=${newText}`;
+        fetch('/editTodo', {
+            method: 'POST', body, headers: {
+                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+            }
+        }).then(() => {
+            window.location.reload();
+        });
+    }
+</script>

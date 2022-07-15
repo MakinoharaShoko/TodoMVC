@@ -100,6 +100,15 @@ app.post('/eraseAllDone', (req, res) => {
     res.redirect(url);
 })
 
+app.post('/editTodo',(req, res)=>{
+    const body = req.body;
+    const editId = body.id;
+    const text = body.text;
+    const index = mapIdtoIndex(editId);
+    TodoDatas[index].text = text;
+    res.send('OK');
+})
+
 app.listen(Port, () => console.log('Express server running at ' + Port));
 
 function mapReferToUrl(refer) {

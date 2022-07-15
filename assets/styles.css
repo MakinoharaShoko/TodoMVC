@@ -84,8 +84,8 @@
     border-radius: 5px;
 }
 
-.input::placeholder{
-    color: rgba(0,0,0,0.3);
+.input::placeholder {
+    color: rgba(0, 0, 0, 0.3);
 }
 
 .itemContainer {
@@ -142,9 +142,13 @@
 }
 
 .itemText {
+    user-select: none;
+    padding: 0 0 0 5px;
 }
 
 .itemTextDone {
+    padding: 0 0 0 5px;
+    user-select: none;
     text-decoration: line-through;
     color: rgba(0, 0, 0, 0.3);
 }
@@ -159,7 +163,7 @@
     padding: 0 0 10px 0;
 }
 
-.deleteButton{
+.deleteButton {
     padding: 3px 10px 3px 10px;
     border: none;
     font-size: larger;
@@ -170,17 +174,23 @@
     margin: 0 5px 0 0;
 }
 
-.deleteButton:hover{
+.deleteButton:hover {
     background: #CB1B45;
     color: white;
 }
 
-.headControlContainer{
+.headControlContainer {
     display: flex;
 }
 
-.undoText{
+.undoText {
     padding: 0 0 13px 0;
     color: #005caf;
     font-size: x-large;
+}
+
+.editInput {
+    font-size: x-large;
+    /*border: 1px solid rgba(0, 0, 0, 0.1);*/
+    /*box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);*/
 }
