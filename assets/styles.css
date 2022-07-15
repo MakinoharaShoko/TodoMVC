@@ -174,3 +174,13 @@
     background: #CB1B45;
     color: white;
 }
+
+.headControlContainer{
+    display: flex;
+}
+
+.undoText{
+    padding: 0 0 13px 0;
+    color: #005caf;
+    font-size: x-large;
+}

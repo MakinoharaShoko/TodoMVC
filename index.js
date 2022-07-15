@@ -73,6 +73,33 @@ app.post('/setActive', (req, res) => {
     res.redirect(url);
 })
 
+app.post('/setAllActive', (req, res) => {
+    for (const e of TodoDatas) {
+        e.type = 'active';
+    }
+    const refer = req.body.refer;
+    const url = mapReferToUrl(refer);
+    res.redirect(url);
+});
+
+app.post('/setAllDone', (req, res) => {
+    for (const e of TodoDatas) {
+        e.type = 'done';
+    }
+    const refer = req.body.refer;
+    const url = mapReferToUrl(refer);
+    res.redirect(url);
+});
+
+app.post('/eraseAllDone', (req, res) => {
+    const newList = TodoDatas.filter(e => e.type !== 'done');
+    TodoDatas.splice(0, TodoDatas.length);
+    TodoDatas.push(...newList);
+    const refer = req.body.refer;
+    const url = mapReferToUrl(refer);
+    res.redirect(url);
+})
+
 app.listen(Port, () => console.log('Express server running at ' + Port));
 
 function mapReferToUrl(refer) {
