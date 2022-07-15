@@ -54,8 +54,8 @@
                             <button class="smallButton" type="submit">
                                 标为已完成
                             </button>
+                            <span id="<%= item.id %>" class="itemText"><%= item.text %></span>
                         </form>
-                        <span id="<%= item.id %>" class="itemText"><%= item.text %></span>
                     <% } %>
                     <% if(item.type === 'done'){ %>
                         <form action="/setActive" method="post">
@@ -64,8 +64,8 @@
                             <button class="smallButton" type="submit">
                                 标为未完成
                             </button>
+                            <span id="<%= item.id %>" class="itemTextDone"><%= item.text %></span>
                         </form>
-                        <span id="<%= item.id %>" class="itemTextDone"><%= item.text %></span>
                     <% } %>
                 </div>
                 <div class="optionList">
@@ -111,7 +111,7 @@
             inputElement.addEventListener('blur', (event) => editTodo(event, editId));
             inputElement.addEventListener('change', (event) => editTodo(event, editId));
             parentNode.removeChild(element);
-            parentNode.appendChild(inputElement);
+            parentNode.parentElement.appendChild(inputElement);
             inputElement.focus();
         })
     }
